@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:ui.shadcn.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --yes)",
+      "Bash(export PATH=\"$PATH:/Users/smash/.nvm/versions/node/v24.13.0/bin\")",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --yes --name=camavinga-house)",
+      "Bash(npm init -y)",
+      "Bash(npm pkg set name=\"camavinga-house\" description=\"Salon de coiffure - application de prise de RDV\")",
+      "Bash(npm install next@14 react@18 react-dom@18)",
+      "Bash(npm install --save-dev typescript @types/node @types/react @types/react-dom tailwindcss postcss autoprefixer eslint eslint-config-next)",
+      "Bash(npm install tailwindcss-animate)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(chmod +x \"/Users/smash/Desktop/Camavinga House/dev.sh\")",
+      "Bash(npm install tailwindcss@^3.4.0 postcss autoprefixer --save-dev)",
+      "Bash(node -e \"console.log\\(require\\(''./node_modules/tailwindcss/package.json''\\).version\\)\")",
+      "Bash(lsof -i :3000)",
+      "Bash(npx shadcn@latest init --defaults --yes)"
+    ]
+  }
+}

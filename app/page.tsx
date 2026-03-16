@@ -491,15 +491,6 @@ export default function HomePage() {
               >
                 {t.heroCta}
               </a>
-              <a
-                href="#salon"
-                className="group text-[11px] tracking-[0.15em] uppercase font-medium text-neutral-500 hover:text-gold transition-colors duration-300 inline-flex items-center gap-2"
-              >
-                {t.heroDiscover}
-                <svg className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
-                </svg>
-              </a>
             </div>
           </div>
         </div>

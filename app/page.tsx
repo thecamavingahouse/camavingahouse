@@ -982,8 +982,7 @@ export default function HomePage() {
             <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-gold/40 mb-5 sm:mb-6">
               {t.footerContactLabel}
             </p>
-            <p className="text-[12px] sm:text-[13px] text-neutral-500">09.87.65.XX.XX</p>
-            <p className="text-[12px] sm:text-[13px] text-neutral-600 mt-1.5">Rennes &middot; Madrid</p>
+            <p className="text-[12px] sm:text-[13px] text-neutral-600">Rennes &middot; Madrid</p>
             <a
               href="/dashboard"
               className="group text-[11px] text-neutral-700 hover:text-gold mt-8 sm:mt-10 inline-flex items-center gap-2 transition-colors duration-300"

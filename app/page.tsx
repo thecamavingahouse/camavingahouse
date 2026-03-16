@@ -792,7 +792,7 @@ export default function HomePage() {
 
           {/* Services grid */}
           <div className="grid lg:grid-cols-2 gap-x-12 xl:gap-x-20 gap-y-10 sm:gap-y-12">
-            {(MENUS[lang]?.[selectedSalon] || MENUS.fr[selectedSalon] || []).map(cat => (
+            {(MENUS[lang]?.[selectedSalon] || MENUS[lang]?.rennes || MENUS.fr.rennes).map(cat => (
               <div key={cat.category}>
                 <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gold/40 mb-4 pb-4 border-b border-neutral-800/50">
                   {cat.category}

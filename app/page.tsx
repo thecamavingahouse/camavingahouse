@@ -857,7 +857,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {t.franchisePillars.map((item, i) => (
               <div key={item.title} className="franchise-card bg-[#0A0A0A] border border-neutral-800/30 p-5 sm:p-8 flex flex-col gap-3 sm:gap-5">
-                <span className="font-serif text-[2rem] sm:text-[2.5rem] font-light text-gold/[0.12]">
+                <span className="font-serif text-[2rem] sm:text-[2.5rem] font-light text-gold/40">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className="text-[12px] sm:text-[14px] font-semibold text-white tracking-wide">{item.title}</h3>

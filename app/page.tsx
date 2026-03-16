@@ -111,7 +111,60 @@ const T = {
     formParcours: 'Trayectoria profesional', formMessage: 'Mensaje', formSubmit: 'Enviar mi candidatura',
     footerTagline: 'Barberia de excepcion.', footerNavLabel: 'Navegacion',
     footerNavItems: [['Nuestros Salones', '#salon'], ['Servicios', '#services'], ['Reservar', '#services']] as [string, string][],
-    footerContactLabel: 'Contacto', footerCopyright: 'Todos los derechos reservados.', footerAdmin: 'Admin \u2192',
+    footerContactLabel: 'Contacto', footerCopyright: 'Todos los derechos reservados.',
+  },
+  en: {
+    navSalons: 'Our Shops', navServices: 'Services', navFranchise: 'Franchise',
+    navContact: 'Contact', navBook: 'Book Now',
+    heroTag: 'Barbershop \u00b7 Rennes \u00b7 Madrid \u00b7 Casablanca',
+    heroH1a: 'The home of', heroH1b: 'champions.',
+    heroSub: 'Mbapp\u00e9, Vinicius Jr, Bellingham, Varane, R\u00fcdiger, Rodri, Alaba\u2026 Their barber? That\u2019s us.',
+    heroCta: 'Book an appointment', heroDiscover: 'Discover',
+    salonBadge: 'Our Shops', salonH2a: 'A shop', salonH2b: 'you\u2019ll come back to.',
+    salonP: 'Born in 2023 from a passion for the craft done right. A strong identity, a demanding service, a vision for growth \u2014 a concept built to last and deliver a barbershop experience without compromise.',
+    salonLink: 'Our services',
+    addressesLabel: 'Our Locations',
+    servicesLabel: 'Our Services', servicesH2: 'What we do', servicesCta: 'Book a service',
+    services: [
+      { title: 'Haircut', desc: 'Simple cut, student cut, with styling or custom design.', price: 'from \u20ac20' },
+      { title: 'Beard', desc: 'Trim, shaping and shave. From classic to bespoke design.', price: 'from \u20ac15' },
+      { title: 'VIP Cut', desc: 'Full cut + beard + facial treatment. The ultimate experience.', price: 'from \u20ac60' },
+      { title: 'Treatments', desc: 'Moisturizing treatment, facial, bleaching and highlights.', price: 'from \u20ac19' },
+    ],
+    approcheLabel: 'Our Approach', approcheH2a: 'More than a shop,', approcheH2b: 'a vision.',
+    approcheP: 'Since 2023, one conviction: to deliver a consistent, structured and demanding service. Because you deserve the best at every visit.',
+    piliers: [
+      { n: '01', title: 'Precision', desc: 'Taking the time to listen, working with precision \u2014 a perfect result, without compromise on quality.' },
+      { n: '02', title: 'Trust', desc: 'A reliable, serious and demanding barber, where every client can return with full confidence.' },
+      { n: '03', title: 'Authenticity', desc: 'A strong identity, a concept that stands out. Camavinga House is a universe \u2014 not just a haircut.' },
+    ],
+    avisLabel: 'Google Reviews', avisH2: 'What they say',
+    avis: [
+      { name: 'Alexandre M.', date: '2 weeks ago', text: 'A level above anything I\u2019ve ever experienced. The barber takes his time, truly listens to what you want. I don\u2019t go anywhere else anymore.' },
+      { name: 'Rayan K.', date: '1 month ago', text: 'Incredible setting, flawless result. You can tell it\u2019s structured, professional. The kind of place you leave feeling on top of the world.' },
+      { name: 'Thomas L.', date: '3 weeks ago', text: 'The VIP cut is worth every penny. Facial treatment included, perfect atmosphere. Clearly the best barbershop in Rennes.' },
+    ],
+    ctaTag: 'Camavinga House \u00b7 Rennes \u00b7 Madrid',
+    ctaH2a: 'Book your appointment', ctaH2b: 'today.',
+    ctaP: 'Book online in a few clicks \u2014 choose your barber and your preferred time slot.',
+    ctaBtn: 'Book now',
+    franchiseLabel: 'Franchise', franchiseH2a: 'Join the', franchiseH2b: 'Camavinga House.',
+    franchiseP: 'Created to deliver a premium barbershop experience, built on precision, the time given to each client and a strong identity. We\u2019re looking for partners who share this standard.',
+    franchisePillars: [
+      { title: 'A recognized brand', desc: 'Join a name everyone knows \u2014 frequented by the biggest stars in world football.' },
+      { title: 'Proven expertise', desc: 'Benefit from our training, methods and operational know-how.' },
+      { title: 'Turnkey concept', desc: 'Full support provided, from shop design to communication strategy.' },
+      { title: 'Controlled network', desc: 'We prioritize committed partners who share a demanding vision of the craft.' },
+    ],
+    modeleLabel: 'The model', modeleH3a: 'A franchise built', modeleH3b: 'to last.',
+    modeleP: 'We work with entrepreneurs who share our values and our passion for the craft. Each The Camavinga House franchise combines local personality with the strength of a unified brand.',
+    modeleItems: ['Location and space requirements', 'Initial training and ongoing support', 'Marketing and brand assets provided'],
+    candidatureLabel: 'Application', candidatureP: 'Fill in your details and we\u2019ll get back to you shortly.',
+    formNom: 'Full name', formEmail: 'Email', formTel: 'Phone', formVille: 'City / Country',
+    formParcours: 'Professional background', formMessage: 'Message', formSubmit: 'Submit application',
+    footerTagline: 'Premium barbershop.', footerNavLabel: 'Navigation',
+    footerNavItems: [['Our Shops', '#salon'], ['Services', '#services'], ['Book', '#services']] as [string, string][],
+    footerContactLabel: 'Contact', footerCopyright: 'All rights reserved.',
   },
 }
 
@@ -249,7 +302,7 @@ const SALON_TABS = [
 ]
 
 export default function HomePage() {
-  const [lang, setLang] = useState<'fr' | 'es'>('fr')
+  const [lang, setLang] = useState<'fr' | 'es' | 'en'>('fr')
   const [selectedSalon, setSelectedSalon] = useState('rennes')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -365,19 +418,17 @@ export default function HomePage() {
           <div className="flex items-center gap-3 sm:gap-6">
             {/* Lang switch */}
             <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.15em]">
-              <button
-                onClick={() => setLang('fr')}
-                className={`transition-colors duration-300 ${lang === 'fr' ? 'text-gold' : 'text-neutral-600 hover:text-neutral-400'}`}
-              >
-                FR
-              </button>
-              <span className="text-neutral-800 select-none">/</span>
-              <button
-                onClick={() => setLang('es')}
-                className={`transition-colors duration-300 ${lang === 'es' ? 'text-gold' : 'text-neutral-600 hover:text-neutral-400'}`}
-              >
-                ES
-              </button>
+              {(['fr', 'es', 'en'] as const).map((l, i) => (
+                <span key={l} className="flex items-center gap-1.5">
+                  {i > 0 && <span className="text-neutral-800 select-none">/</span>}
+                  <button
+                    onClick={() => setLang(l)}
+                    className={`transition-colors duration-300 ${lang === l ? 'text-gold' : 'text-neutral-600 hover:text-neutral-400'}`}
+                  >
+                    {l.toUpperCase()}
+                  </button>
+                </span>
+              ))}
             </div>
 
             {/* CTA desktop */}

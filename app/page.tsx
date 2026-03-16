@@ -1,5 +1,6 @@
 'use client'
 
+// v2 - force rebuild
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'

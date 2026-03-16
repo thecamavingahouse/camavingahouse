@@ -562,7 +562,7 @@ export default function HomePage() {
         <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32 lg:py-40 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="flex flex-col gap-5 sm:gap-7 order-2 lg:order-1">
-            <span data-reveal data-reveal-delay="0" className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+            <span data-reveal data-reveal-delay="0" className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
               {t.salonBadge}
             </span>
             <h2 data-reveal data-reveal-delay="100" className="font-serif text-3xl sm:text-4xl xl:text-[3.4rem] font-light leading-[1.1] text-white">
@@ -602,7 +602,7 @@ export default function HomePage() {
       <section className="bg-[#080808]">
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <span data-reveal className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60 block mb-10 sm:mb-14">
+          <span data-reveal className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60 block mb-10 sm:mb-14">
             {t.addressesLabel}
           </span>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
@@ -661,7 +661,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
 
           <div data-reveal className="mb-10 sm:mb-16 max-w-2xl">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60 block mb-5">
+            <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60 block mb-5">
               {t.servicesLabel}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl xl:text-[3.2rem] font-light text-white leading-tight">
@@ -751,7 +751,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
           <div className="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-start">
             <div data-reveal="left">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+              <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
                 {t.approcheLabel}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl xl:text-[3rem] font-light mt-5 mb-6 text-white leading-[1.15]">
@@ -790,7 +790,7 @@ export default function HomePage() {
 
           <div data-reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-8 mb-12 sm:mb-20">
             <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+              <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
                 {t.avisLabel}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl xl:text-[3.2rem] font-light mt-4 text-white">
@@ -893,7 +893,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 pt-20 sm:pt-32 pb-16 sm:pb-24">
           <div data-reveal className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-16 sm:mb-24">
             <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+              <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
                 {t.franchiseLabel}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl xl:text-[3.2rem] font-light mt-5 leading-[1.1] text-white">
@@ -924,7 +924,7 @@ export default function HomePage() {
 
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-16 sm:py-28 grid lg:grid-cols-2 gap-14 lg:gap-24">
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+            <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
               {t.modeleLabel}
             </span>
             <h3 className="font-serif text-[1.5rem] sm:text-[1.8rem] xl:text-[2.2rem] font-light mt-5 mb-6 sm:mb-7 leading-[1.2] text-white">
@@ -963,7 +963,7 @@ export default function HomePage() {
           </div>
 
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+            <span className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.3em] text-gold/60">
               {t.candidatureLabel}
             </span>
             <p className="text-[13px] sm:text-[14px] text-neutral-400 mt-5 mb-8 sm:mb-10 leading-relaxed">

@@ -214,85 +214,162 @@ const ADDRESSES = [
 type ServiceItem = { name: string; sub: string | null; duration: string; price: string }
 type ServiceCategory = { category: string; items: ServiceItem[] }
 
-const MENU_RENNES: ServiceCategory[] = [
-  {
-    category: 'Coupe',
-    items: [
-      { name: 'Coupe simple', sub: 'Shampoing + coiffage', duration: '30min', price: '28\u20ac' },
-      { name: 'Coupe etudiant', sub: 'Shampoing + coiffage', duration: '30min', price: '23\u20ac' },
-      { name: 'Coupe & barbe', sub: null, duration: '45min', price: '38\u20ac' },
-      { name: 'Coupe & barbe etudiant', sub: null, duration: '45min', price: '33\u20ac' },
-      { name: 'Coupe enfant', sub: '-12 ans', duration: '30min', price: '20\u20ac' },
-      { name: 'Coupe VIP', sub: 'Coupe + barbe + soin', duration: '1h', price: '60\u20ac' },
-      { name: 'Coupe transformation', sub: null, duration: '1h', price: '60\u20ac' },
+const MENUS: Record<string, Record<string, ServiceCategory[]>> = {
+  fr: {
+    rennes: [
+      { category: 'Coupe', items: [
+        { name: 'Coupe simple', sub: 'Shampoing + coiffage', duration: '30min', price: '28\u20ac' },
+        { name: 'Coupe \u00e9tudiant', sub: 'Shampoing + coiffage', duration: '30min', price: '23\u20ac' },
+        { name: 'Coupe & barbe', sub: null, duration: '45min', price: '38\u20ac' },
+        { name: 'Coupe & barbe \u00e9tudiant', sub: null, duration: '45min', price: '33\u20ac' },
+        { name: 'Coupe enfant', sub: '-12 ans', duration: '30min', price: '20\u20ac' },
+        { name: 'Coupe VIP', sub: 'Coupe + barbe + soin', duration: '1h', price: '60\u20ac' },
+        { name: 'Coupe transformation', sub: null, duration: '1h', price: '60\u20ac' },
+      ]},
+      { category: 'Barbe', items: [
+        { name: 'Barbe simple', sub: null, duration: '15min', price: '15\u20ac' },
+        { name: 'Barbe XL', sub: null, duration: '20min', price: '20\u20ac' },
+      ]},
+      { category: 'Suppl\u00e9ments', items: [
+        { name: 'Design', sub: null, duration: '10min', price: '3\u20ac' },
+        { name: 'Contours', sub: null, duration: '10min', price: '5\u20ac' },
+        { name: 'D\u00e9coloration', sub: 'Sur rendez-vous', duration: '3h', price: '80\u20ac' },
+        { name: 'D\u00e9coloration fantaisie', sub: 'Sur rendez-vous', duration: '3h', price: '90\u20ac' },
+        { name: 'Couleur m\u00e8che', sub: 'Sur rendez-vous', duration: '2h', price: '50\u20ac' },
+      ]},
+      { category: 'Soins', items: [
+        { name: 'Soin hydratant', sub: null, duration: '15min', price: '15\u20ac' },
+        { name: 'Soin du visage', sub: null, duration: '20min', price: '25\u20ac' },
+      ]},
+    ],
+    chamberi: [
+      { category: 'Coupe', items: [
+        { name: 'Coupe', sub: null, duration: '30min', price: '23\u20ac' },
+        { name: 'Coupe & barbe', sub: null, duration: '45min', price: '33\u20ac' },
+        { name: 'Coupe enfant', sub: 'jusqu\u2019\u00e0 10 ans', duration: '30min', price: '17\u20ac' },
+        { name: 'Coupe & Hairtattoo', sub: 'design', duration: '35min', price: '26\u20ac' },
+        { name: 'Coupe hebdo', sub: null, duration: '30min', price: '20\u20ac' },
+      ]},
+      { category: 'Barbe', items: [
+        { name: 'Barbe', sub: null, duration: '15min', price: '10\u20ac' },
+        { name: 'Barbe XL', sub: null, duration: '20min', price: '13\u20ac' },
+      ]},
+      { category: 'Couleur', items: [
+        { name: 'D\u00e9coloration', sub: null, duration: '3h', price: '70\u20ac' },
+        { name: 'D\u00e9coloration fantaisie', sub: null, duration: '3h', price: '85\u20ac' },
+        { name: 'Couleur m\u00e8ches', sub: null, duration: '3h', price: '50\u20ac' },
+      ]},
+      { category: 'Rastas', items: [
+        { name: 'R\u00e9paration rastas', sub: null, duration: '2h', price: '80\u20ac' },
+        { name: 'Cr\u00e9ation rastas', sub: 'depuis 0', duration: '4h', price: '200\u20ac' },
+        { name: 'Tresses avec rastas', sub: null, duration: '1h', price: '40\u20ac' },
+      ]},
     ],
   },
-  {
-    category: 'Barbe',
-    items: [
-      { name: 'Barbe simple', sub: null, duration: '15min', price: '15\u20ac' },
-      { name: 'Barbe XL', sub: null, duration: '20min', price: '20\u20ac' },
+  es: {
+    rennes: [
+      { category: 'Corte', items: [
+        { name: 'Corte simple', sub: 'Champ\u00fa + peinado', duration: '30min', price: '28\u20ac' },
+        { name: 'Corte estudiante', sub: 'Champ\u00fa + peinado', duration: '30min', price: '23\u20ac' },
+        { name: 'Corte & barba', sub: null, duration: '45min', price: '38\u20ac' },
+        { name: 'Corte & barba estudiante', sub: null, duration: '45min', price: '33\u20ac' },
+        { name: 'Corte ni\u00f1o', sub: '-12 a\u00f1os', duration: '30min', price: '20\u20ac' },
+        { name: 'Corte VIP', sub: 'Corte + barba + tratamiento', duration: '1h', price: '60\u20ac' },
+        { name: 'Corte transformaci\u00f3n', sub: null, duration: '1h', price: '60\u20ac' },
+      ]},
+      { category: 'Barba', items: [
+        { name: 'Barba simple', sub: null, duration: '15min', price: '15\u20ac' },
+        { name: 'Barba XL', sub: null, duration: '20min', price: '20\u20ac' },
+      ]},
+      { category: 'Extras', items: [
+        { name: 'Dise\u00f1o', sub: null, duration: '10min', price: '3\u20ac' },
+        { name: 'Contornos', sub: null, duration: '10min', price: '5\u20ac' },
+        { name: 'Decoloraci\u00f3n', sub: 'Con cita previa', duration: '3h', price: '80\u20ac' },
+        { name: 'Decoloraci\u00f3n fantas\u00eda', sub: 'Con cita previa', duration: '3h', price: '90\u20ac' },
+        { name: 'Color mechas', sub: 'Con cita previa', duration: '2h', price: '50\u20ac' },
+      ]},
+      { category: 'Tratamientos', items: [
+        { name: 'Tratamiento hidratante', sub: null, duration: '15min', price: '15\u20ac' },
+        { name: 'Tratamiento facial', sub: null, duration: '20min', price: '25\u20ac' },
+      ]},
     ],
-  },
-  {
-    category: 'Supplements',
-    items: [
-      { name: 'Design', sub: null, duration: '10min', price: '3\u20ac' },
-      { name: 'Contours', sub: null, duration: '10min', price: '5\u20ac' },
-      { name: 'Decoloration', sub: 'Sur rendez-vous', duration: '3h', price: '80\u20ac' },
-      { name: 'Decoloration fantaisie', sub: 'Sur rendez-vous', duration: '3h', price: '90\u20ac' },
-      { name: 'Couleur meche', sub: 'Sur rendez-vous', duration: '2h', price: '50\u20ac' },
+    chamberi: [
+      { category: 'Corte', items: [
+        { name: 'Corte de pelo', sub: null, duration: '30min', price: '23\u20ac' },
+        { name: 'Corte y barba', sub: null, duration: '45min', price: '33\u20ac' },
+        { name: 'Corte ni\u00f1o', sub: 'hasta 10 a\u00f1os', duration: '30min', price: '17\u20ac' },
+        { name: 'Corte y Hairtattoo', sub: 'dise\u00f1o', duration: '35min', price: '26\u20ac' },
+        { name: 'Corte semanal', sub: null, duration: '30min', price: '20\u20ac' },
+      ]},
+      { category: 'Barba', items: [
+        { name: 'Perfilado de barba', sub: null, duration: '15min', price: '10\u20ac' },
+        { name: 'Barba XL', sub: null, duration: '20min', price: '13\u20ac' },
+      ]},
+      { category: 'Color', items: [
+        { name: 'Decoloraci\u00f3n', sub: null, duration: '3h', price: '70\u20ac' },
+        { name: 'Decoloraci\u00f3n fantas\u00eda', sub: null, duration: '3h', price: '85\u20ac' },
+        { name: 'Color mechas', sub: null, duration: '3h', price: '50\u20ac' },
+      ]},
+      { category: 'Rastas', items: [
+        { name: 'Arreglo de rastas', sub: null, duration: '2h', price: '80\u20ac' },
+        { name: 'Creaci\u00f3n de rastas', sub: 'desde 0', duration: '4h', price: '200\u20ac' },
+        { name: 'Trenzas con rastas', sub: null, duration: '1h', price: '40\u20ac' },
+      ]},
     ],
+    arroyomolinos: [],
   },
-  {
-    category: 'Soins',
-    items: [
-      { name: 'Soin hydratant', sub: null, duration: '15min', price: '15\u20ac' },
-      { name: 'Soin du visage', sub: null, duration: '20min', price: '25\u20ac' },
+  en: {
+    rennes: [
+      { category: 'Haircut', items: [
+        { name: 'Classic cut', sub: 'Shampoo + styling', duration: '30min', price: '\u20ac28' },
+        { name: 'Student cut', sub: 'Shampoo + styling', duration: '30min', price: '\u20ac23' },
+        { name: 'Cut & beard', sub: null, duration: '45min', price: '\u20ac38' },
+        { name: 'Student cut & beard', sub: null, duration: '45min', price: '\u20ac33' },
+        { name: 'Kids cut', sub: 'Under 12', duration: '30min', price: '\u20ac20' },
+        { name: 'VIP Cut', sub: 'Cut + beard + treatment', duration: '1h', price: '\u20ac60' },
+        { name: 'Transformation cut', sub: null, duration: '1h', price: '\u20ac60' },
+      ]},
+      { category: 'Beard', items: [
+        { name: 'Beard trim', sub: null, duration: '15min', price: '\u20ac15' },
+        { name: 'Beard XL', sub: null, duration: '20min', price: '\u20ac20' },
+      ]},
+      { category: 'Extras', items: [
+        { name: 'Design', sub: null, duration: '10min', price: '\u20ac3' },
+        { name: 'Line-up', sub: null, duration: '10min', price: '\u20ac5' },
+        { name: 'Bleaching', sub: 'By appointment', duration: '3h', price: '\u20ac80' },
+        { name: 'Fantasy bleaching', sub: 'By appointment', duration: '3h', price: '\u20ac90' },
+        { name: 'Highlights', sub: 'By appointment', duration: '2h', price: '\u20ac50' },
+      ]},
+      { category: 'Treatments', items: [
+        { name: 'Moisturizing treatment', sub: null, duration: '15min', price: '\u20ac15' },
+        { name: 'Facial treatment', sub: null, duration: '20min', price: '\u20ac25' },
+      ]},
     ],
-  },
-]
-
-const MENU_CHAMBERI: ServiceCategory[] = [
-  {
-    category: 'Corte',
-    items: [
-      { name: 'Corte de pelo', sub: null, duration: '30min', price: '23\u20ac' },
-      { name: 'Corte y barba', sub: null, duration: '45min', price: '33\u20ac' },
-      { name: 'Corte para nino', sub: 'hasta 10 anos', duration: '30min', price: '17\u20ac' },
-      { name: 'Corte y Hairtattoo', sub: 'diseno', duration: '35min', price: '26\u20ac' },
-      { name: 'Corte semanal', sub: null, duration: '30min', price: '20\u20ac' },
+    chamberi: [
+      { category: 'Haircut', items: [
+        { name: 'Haircut', sub: null, duration: '30min', price: '\u20ac23' },
+        { name: 'Cut & beard', sub: null, duration: '45min', price: '\u20ac33' },
+        { name: 'Kids cut', sub: 'Up to 10 years', duration: '30min', price: '\u20ac17' },
+        { name: 'Cut & Hairtattoo', sub: 'Design', duration: '35min', price: '\u20ac26' },
+        { name: 'Weekly cut', sub: null, duration: '30min', price: '\u20ac20' },
+      ]},
+      { category: 'Beard', items: [
+        { name: 'Beard trim', sub: null, duration: '15min', price: '\u20ac10' },
+        { name: 'Beard XL', sub: null, duration: '20min', price: '\u20ac13' },
+      ]},
+      { category: 'Color', items: [
+        { name: 'Bleaching', sub: null, duration: '3h', price: '\u20ac70' },
+        { name: 'Fantasy bleaching', sub: null, duration: '3h', price: '\u20ac85' },
+        { name: 'Highlights', sub: null, duration: '3h', price: '\u20ac50' },
+      ]},
+      { category: 'Dreadlocks', items: [
+        { name: 'Dreadlock repair', sub: null, duration: '2h', price: '\u20ac80' },
+        { name: 'Dreadlock creation', sub: 'From scratch', duration: '4h', price: '\u20ac200' },
+        { name: 'Braids with dreads', sub: null, duration: '1h', price: '\u20ac40' },
+      ]},
     ],
+    arroyomolinos: [],
   },
-  {
-    category: 'Barba',
-    items: [
-      { name: 'Perfilado de barba', sub: null, duration: '15min', price: '10\u20ac' },
-      { name: 'Barba XL', sub: null, duration: '20min', price: '13\u20ac' },
-    ],
-  },
-  {
-    category: 'Color',
-    items: [
-      { name: 'Decoloracion', sub: null, duration: '3h', price: '70\u20ac' },
-      { name: 'Decoloracion fantasia', sub: null, duration: '3h', price: '85\u20ac' },
-      { name: 'Color mechas', sub: null, duration: '3h', price: '50\u20ac' },
-    ],
-  },
-  {
-    category: 'Rastas',
-    items: [
-      { name: 'Arreglo de rastas', sub: null, duration: '2h', price: '80\u20ac' },
-      { name: 'Creacion de rastas', sub: 'desde 0', duration: '4h', price: '200\u20ac' },
-      { name: 'Trenzas con rastas', sub: null, duration: '1h', price: '40\u20ac' },
-    ],
-  },
-]
-
-const SERVICES_BY_SALON: Record<string, ServiceCategory[]> = {
-  rennes: MENU_RENNES,
-  chamberi: MENU_CHAMBERI,
-  arroyomolinos: MENU_RENNES,
 }
 
 const SALON_TABS = [
@@ -663,10 +740,10 @@ export default function HomePage() {
                 className={`group py-4 sm:py-8 ${idx > 0 ? 'lg:border-l border-neutral-800/60 lg:pl-10' : ''} ${loc.comingSoon ? 'opacity-50' : ''}`}
               >
                 <div className="flex items-baseline gap-2 sm:gap-4 mb-1">
-                  <span className="font-serif text-[11px] sm:text-[13px] text-gold/30">{loc.n}</span>
+                  <span className="font-serif text-[15px] sm:text-[17px] text-gold/50">{loc.n}</span>
                   <h3 className="font-serif text-[1.2rem] sm:text-[1.7rem] font-light text-white tracking-wide">{loc.city}</h3>
                 </div>
-                <span className="text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.25em] text-neutral-600 ml-5 sm:ml-8">
+                <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.25em] text-neutral-600 ml-5 sm:ml-8">
                   {loc.district}
                 </span>
 
@@ -685,11 +762,11 @@ export default function HomePage() {
                           <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
                         </div>
                         {loc.hours && (
-                          <ul className="flex flex-col gap-1 sm:gap-1.5 hidden sm:flex">
+                          <ul className="flex-col gap-1.5 hidden sm:flex">
                             {loc.hours.map(h => (
-                              <li key={h.day} className="flex justify-between text-[10px] sm:text-[11px] gap-2 sm:gap-4">
-                                <span className={h.time === 'Ferme' ? 'text-neutral-700' : 'text-neutral-500'}>{h.day}</span>
-                                <span className={h.time === 'Ferme' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}>{h.time}</span>
+                              <li key={h.day} className="flex justify-between text-[11px] sm:text-[12px] gap-4">
+                                <span className={`shrink-0 ${h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}`}>{h.day}</span>
+                                <span className={`text-right whitespace-nowrap ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}`}>{h.time}</span>
                               </li>
                             ))}
                           </ul>
@@ -744,7 +821,7 @@ export default function HomePage() {
 
           {/* Services grid */}
           <div className="grid lg:grid-cols-2 gap-x-12 xl:gap-x-20 gap-y-10 sm:gap-y-12">
-            {SERVICES_BY_SALON[selectedSalon].map(cat => (
+            {(MENUS[lang]?.[selectedSalon] || MENUS.fr[selectedSalon] || []).map(cat => (
               <div key={cat.category}>
                 <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gold/40 mb-4 pb-4 border-b border-neutral-800/50">
                   {cat.category}

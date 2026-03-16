@@ -768,7 +768,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
               {t.piliers.map((item, idx) => (
                 <div key={item.n} data-reveal data-reveal-delay={String(idx * 150)} className="group">
-                  <span className="block font-serif text-[3.5rem] sm:text-[4.5rem] font-light leading-none text-gold/[0.07] group-hover:text-gold/[0.15] transition-colors duration-500 mb-4">
+                  <span className="block font-serif text-[3.5rem] sm:text-[4.5rem] font-light leading-none text-gold/30 group-hover:text-gold/50 transition-colors duration-500 mb-4">
                     {item.n}
                   </span>
                   <div className="w-8 h-px bg-gold/25 mb-5 group-hover:w-14 transition-all duration-500" />

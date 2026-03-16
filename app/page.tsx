@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 
 const GOLD = '#C9A84C'
 
@@ -254,6 +255,8 @@ export default function HomePage() {
   const [scrolled, setScrolled] = useState(false)
   const t = T[lang]
 
+  const revealRef = useScrollReveal()
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -277,7 +280,7 @@ export default function HomePage() {
   ]
 
   return (
-    <main className="bg-[#050505] overflow-x-hidden grain-overlay">
+    <main ref={revealRef} className="bg-[#050505] overflow-x-hidden grain-overlay">
 
       {/* ══════════════════════════════════════════
           NAVBAR
@@ -512,28 +515,31 @@ export default function HomePage() {
         <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32 lg:py-40 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="flex flex-col gap-5 sm:gap-7 order-2 lg:order-1">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
+            <span data-reveal data-reveal-delay="0" className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
               {t.salonBadge}
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl xl:text-[3.4rem] font-light leading-[1.1] text-white">
+            <h2 data-reveal data-reveal-delay="100" className="font-serif text-3xl sm:text-4xl xl:text-[3.4rem] font-light leading-[1.1] text-white">
               {t.salonH2a}
               <br />
               <em className="text-gold/90">{t.salonH2b}</em>
             </h2>
-            <div className="w-12 h-px bg-gold/30" />
-            <p className="text-neutral-400 leading-[1.85] text-[14px] sm:text-[15px] max-w-[420px]">
+            <div data-reveal="fade" data-reveal-delay="200" className="w-12 h-px bg-gold/30 gold-line-draw" />
+            <p data-reveal data-reveal-delay="250" className="text-neutral-400 leading-[1.85] text-[14px] sm:text-[15px] max-w-[420px]">
               {t.salonP}
             </p>
             <a
               href="#services"
-              className="group self-start text-[11px] font-semibold tracking-[0.15em] uppercase text-white/80 inline-flex items-center gap-3 hover:text-gold transition-colors duration-300 mt-2"
+              data-reveal data-reveal-delay="350"
+              className="cta-link self-start inline-flex items-center gap-3 px-6 py-3 border border-gold/30 text-[11px] font-semibold tracking-[0.15em] uppercase text-gold mt-2 transition-all duration-300"
             >
-              {t.salonLink}
-              <span className="inline-block w-8 h-px bg-current group-hover:w-12 transition-all duration-300" />
+              <span>{t.salonLink}</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
             </a>
           </div>
 
-          <div className="relative order-1 lg:order-2">
+          <div data-reveal="scale" data-reveal-delay="150" className="relative order-1 lg:order-2">
             <div className="relative h-[300px] sm:h-[420px] lg:h-[560px] rounded-2xl sm:rounded-[2rem] overflow-hidden" style={{ boxShadow: '0 0 0 1px rgba(201,168,76,0.08), 0 40px 100px rgba(0,0,0,0.4)' }}>
               <Image src="/images/interior.png" alt="Interieur Camavinga House" fill className="object-cover" />
             </div>
@@ -549,7 +555,7 @@ export default function HomePage() {
       <section className="bg-[#080808]">
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60 block mb-10 sm:mb-14">
+          <span data-reveal className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60 block mb-10 sm:mb-14">
             {t.addressesLabel}
           </span>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
@@ -607,7 +613,7 @@ export default function HomePage() {
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
 
-          <div className="mb-10 sm:mb-16 max-w-2xl">
+          <div data-reveal className="mb-10 sm:mb-16 max-w-2xl">
             <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60 block mb-5">
               {t.servicesLabel}
             </span>
@@ -697,7 +703,7 @@ export default function HomePage() {
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
           <div className="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-20 items-start">
-            <div>
+            <div data-reveal="left">
               <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
                 {t.approcheLabel}
               </span>
@@ -706,15 +712,15 @@ export default function HomePage() {
                 <br />
                 <em className="text-gold/80">{t.approcheH2b}</em>
               </h2>
-              <div className="w-12 h-px bg-gold/30 mb-6" />
+              <div className="w-12 h-px bg-gold/30 mb-6 gold-line-draw" />
               <p className="text-[13px] sm:text-[14px] text-neutral-500 leading-[1.9] max-w-xs">
                 {t.approcheP}
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
-              {t.piliers.map((item) => (
-                <div key={item.n} className="group">
+              {t.piliers.map((item, idx) => (
+                <div key={item.n} data-reveal data-reveal-delay={String(idx * 150)} className="group">
                   <span className="block font-serif text-[3.5rem] sm:text-[4.5rem] font-light leading-none text-gold/[0.07] group-hover:text-gold/[0.15] transition-colors duration-500 mb-4">
                     {item.n}
                   </span>
@@ -735,7 +741,7 @@ export default function HomePage() {
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
 
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-8 mb-12 sm:mb-20">
+          <div data-reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-8 mb-12 sm:mb-20">
             <div>
               <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
                 {t.avisLabel}
@@ -813,7 +819,7 @@ export default function HomePage() {
         <Image src="/images/interieur salon 2.png" alt="Interieur Camavinga House" fill className="object-cover object-center" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/65 to-black/85" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-5 sm:px-8 gap-4 sm:gap-6">
+        <div data-reveal="scale" className="relative z-10 flex flex-col items-center justify-center h-full text-center px-5 sm:px-8 gap-4 sm:gap-6">
           <span className="text-[8px] sm:text-[9px] tracking-[0.4em] sm:tracking-[0.5em] uppercase font-medium text-gold/50">{t.ctaTag}</span>
           <h2 className="font-serif text-[1.8rem] sm:text-[2.8rem] xl:text-[3.5rem] font-light text-white leading-[1.1]">
             {t.ctaH2a}
@@ -838,7 +844,7 @@ export default function HomePage() {
       ══════════════════════════════════════════ */}
       <section id="franchise" className="bg-[#050505]">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 pt-20 sm:pt-32 pb-16 sm:pb-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-16 sm:mb-24">
+          <div data-reveal className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-16 sm:mb-24">
             <div>
               <span className="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/60">
                 {t.franchiseLabel}
@@ -856,7 +862,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {t.franchisePillars.map((item, i) => (
-              <div key={item.title} className="franchise-card bg-[#0A0A0A] border border-neutral-800/30 p-5 sm:p-8 flex flex-col gap-3 sm:gap-5">
+              <div key={item.title} data-reveal data-reveal-delay={String(i * 100)} className="franchise-card bg-[#0A0A0A] border border-neutral-800/30 p-5 sm:p-8 flex flex-col gap-3 sm:gap-5">
                 <span className="font-serif text-[2rem] sm:text-[2.5rem] font-light text-gold/40">
                   {String(i + 1).padStart(2, '0')}
                 </span>

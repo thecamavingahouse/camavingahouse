@@ -267,6 +267,101 @@
   50% { transform: scale(1.2); }
 }
 
+/* ─── Scroll reveal system ─── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="fade"] {
+  transform: translateY(0);
+}
+
+[data-reveal="left"] {
+  transform: translateX(-40px) translateY(0);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="right"] {
+  transform: translateX(40px) translateY(0);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.95) translateY(0);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Gold line draw animation */
+@keyframes line-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.gold-line-draw {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.revealed .gold-line-draw {
+  transform: scaleX(1);
+}
+
+/* CTA link style */
+.cta-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta-link:hover::before {
+  transform: translateX(0);
+}
+
+.cta-link span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.cta-link:hover span {
+  color: #050505;
+}
+
+.cta-link svg {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-link:hover svg {
+  color: #050505;
+  transform: translateX(4px);
+}
+
 /* Hide scrollbar for tabs */
 .scrollbar-hide {
   -ms-overflow-style: none;

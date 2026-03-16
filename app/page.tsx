@@ -397,32 +397,8 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Glow cursor follower
+  // Card mouse glow tracking
   useEffect(() => {
-    const glowSections = document.querySelectorAll('.glow-section')
-    const handlers: Array<{ el: Element; move: (e: MouseEvent) => void; enter: () => void; leave: () => void }> = []
-
-    glowSections.forEach((section) => {
-      const glow = document.createElement('div')
-      glow.className = 'glow-cursor'
-      glow.style.opacity = '0'
-      section.appendChild(glow)
-
-      const move = (e: MouseEvent) => {
-        const rect = (section as HTMLElement).getBoundingClientRect()
-        glow.style.left = `${e.clientX - rect.left}px`
-        glow.style.top = `${e.clientY - rect.top}px`
-      }
-      const enter = () => { glow.style.opacity = '1' }
-      const leave = () => { glow.style.opacity = '0' }
-
-      section.addEventListener('mousemove', move as EventListener)
-      section.addEventListener('mouseenter', enter)
-      section.addEventListener('mouseleave', leave)
-      handlers.push({ el: section, move: move as (e: MouseEvent) => void, enter, leave })
-    })
-
-    // Card mouse glow tracking
     const cards = document.querySelectorAll('.franchise-card')
     const cardHandlers: Array<{ el: Element; handler: (e: MouseEvent) => void }> = []
     cards.forEach((card) => {
@@ -438,11 +414,6 @@ export default function HomePage() {
     })
 
     return () => {
-      handlers.forEach(({ el, move, enter, leave }) => {
-        el.removeEventListener('mousemove', move as EventListener)
-        el.removeEventListener('mouseenter', enter)
-        el.removeEventListener('mouseleave', leave)
-      })
       cardHandlers.forEach(({ el, handler }) => {
         el.removeEventListener('mousemove', handler as EventListener)
       })
@@ -784,7 +755,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           SERVICES
       ══════════════════════════════════════════ */}
-      <section id="services" className="bg-neutral-950 glow-section">
+      <section id="services" className="bg-neutral-950">
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
 
@@ -1017,7 +988,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           FRANCHISE
       ══════════════════════════════════════════ */}
-      <section id="franchise" className="bg-[#050505] glow-section">
+      <section id="franchise" className="bg-[#050505]">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 pt-20 sm:pt-32 pb-16 sm:pb-24">
           <div data-reveal className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-16 sm:mb-24">
             <div>

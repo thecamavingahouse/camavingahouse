@@ -205,26 +205,30 @@
 
 /* Service row hover */
 .service-row {
-  transition: background-color 0.3s ease, padding-left 0.3s ease;
+  transition: background-color 0.4s ease, padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
 }
 .service-row:hover {
-  background-color: rgba(201, 168, 76, 0.03);
-  padding-left: 8px;
+  background-color: rgba(201, 168, 76, 0.04);
+  padding-left: 12px;
+  border-color: rgba(201, 168, 76, 0.15) !important;
 }
 
 /* Review card */
 .review-card {
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease;
 }
 .review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.15), 0 0 40px rgba(201,168,76,0.05);
+  border-color: rgba(201,168,76,0.2);
 }
 
-/* Franchise card */
+/* Franchise card - 3D tilt effect */
 .franchise-card {
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
 }
 .franchise-card::before {
   content: '';
@@ -232,16 +236,149 @@
   top: 0;
   left: 0;
   width: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, var(--gold), transparent);
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.franchise-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(201,168,76,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 .franchise-card:hover::before {
   width: 100%;
 }
-.franchise-card:hover {
-  transform: translateY(-2px);
+.franchise-card:hover::after {
+  opacity: 1;
 }
+.franchise-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.1);
+  border-color: rgba(201,168,76,0.15);
+}
+
+/* ─── Parallax image zoom on scroll ─── */
+.parallax-zoom {
+  transition: transform 8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.parallax-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* ─── Magnetic button effect ─── */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.magnetic-btn:hover {
+  box-shadow: 0 0 30px rgba(201,168,76,0.15), 0 0 60px rgba(201,168,76,0.05);
+}
+
+/* ─── Text shimmer effect on gold text ─── */
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #C9A84C 0%,
+    #E8D5A0 25%,
+    #C9A84C 50%,
+    #E8D5A0 75%,
+    #C9A84C 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 6s linear infinite;
+}
+
+/* ─── Glow cursor follower ─── */
+.glow-section {
+  position: relative;
+  overflow: hidden;
+}
+.glow-section .glow-cursor {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+/* ─── Word reveal animation ─── */
+@keyframes word-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word-reveal-line {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.word-reveal-line .word {
+  display: inline-block;
+  animation: word-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Image clip reveal ─── */
+@keyframes clip-reveal {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+}
+
+.revealed .clip-reveal,
+.clip-reveal.revealed {
+  animation: clip-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Counter glow pulse ─── */
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(201,168,76,0.2); }
+  50% { text-shadow: 0 0 25px rgba(201,168,76,0.4), 0 0 50px rgba(201,168,76,0.1); }
+}
+
+.counter-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Staggered list entrance ─── */
+.stagger-list > * {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger-list.revealed > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateX(0); }
+.stagger-list.revealed > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateX(0); }
 
 /* Form input focus gold ring */
 .form-input-gold {

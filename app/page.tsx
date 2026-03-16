@@ -258,10 +258,65 @@ export default function HomePage() {
   const revealRef = useScrollReveal()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (!window.location.hash) {
+      window.history.scrollRestoration = 'manual'
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+    }
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Glow cursor follower
+  useEffect(() => {
+    const glowSections = document.querySelectorAll('.glow-section')
+    const handlers: Array<{ el: Element; move: (e: MouseEvent) => void; enter: () => void; leave: () => void }> = []
+
+    glowSections.forEach((section) => {
+      const glow = document.createElement('div')
+      glow.className = 'glow-cursor'
+      glow.style.opacity = '0'
+      section.appendChild(glow)
+
+      const move = (e: MouseEvent) => {
+        const rect = (section as HTMLElement).getBoundingClientRect()
+        glow.style.left = `${e.clientX - rect.left}px`
+        glow.style.top = `${e.clientY - rect.top}px`
+      }
+      const enter = () => { glow.style.opacity = '1' }
+      const leave = () => { glow.style.opacity = '0' }
+
+      section.addEventListener('mousemove', move as EventListener)
+      section.addEventListener('mouseenter', enter)
+      section.addEventListener('mouseleave', leave)
+      handlers.push({ el: section, move: move as (e: MouseEvent) => void, enter, leave })
+    })
+
+    // Card mouse glow tracking
+    const cards = document.querySelectorAll('.franchise-card')
+    const cardHandlers: Array<{ el: Element; handler: (e: MouseEvent) => void }> = []
+    cards.forEach((card) => {
+      const handler = (e: MouseEvent) => {
+        const rect = (card as HTMLElement).getBoundingClientRect()
+        const x = ((e.clientX - rect.left) / rect.width * 100)
+        const y = ((e.clientY - rect.top) / rect.height * 100)
+        ;(card as HTMLElement).style.setProperty('--mouse-x', `${x}%`)
+        ;(card as HTMLElement).style.setProperty('--mouse-y', `${y}%`)
+      }
+      card.addEventListener('mousemove', handler as EventListener)
+      cardHandlers.push({ el: card, handler: handler as (e: MouseEvent) => void })
+    })
+
+    return () => {
+      handlers.forEach(({ el, move, enter, leave }) => {
+        el.removeEventListener('mousemove', move as EventListener)
+        el.removeEventListener('mouseenter', enter)
+        el.removeEventListener('mouseleave', leave)
+      })
+      cardHandlers.forEach(({ el, handler }) => {
+        el.removeEventListener('mousemove', handler as EventListener)
+      })
+    }
   }, [])
 
   useEffect(() => {
@@ -466,7 +521,7 @@ export default function HomePage() {
             >
               {t.heroH1a}
               <br />
-              <em className="text-gold">{t.heroH1b}</em>
+              <em className="text-shimmer">{t.heroH1b}</em>
             </h1>
 
             <div
@@ -533,7 +588,7 @@ export default function HomePage() {
 
           <div data-reveal="scale" data-reveal-delay="150" className="relative order-1 lg:order-2">
             <div className="relative h-[300px] sm:h-[420px] lg:h-[560px] rounded-2xl sm:rounded-[2rem] overflow-hidden" style={{ boxShadow: '0 0 0 1px rgba(201,168,76,0.08), 0 40px 100px rgba(0,0,0,0.4)' }}>
-              <Image src="/images/interior.png" alt="Interieur Camavinga House" fill className="object-cover" />
+              <Image src="/images/interior.png" alt="Interieur Camavinga House" fill className="object-cover parallax-zoom" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-16 sm:w-24 h-16 sm:h-24 border-r border-b border-gold/15 hidden sm:block" />
             <div className="absolute -top-4 -left-4 w-16 sm:w-24 h-16 sm:h-24 border-l border-t border-gold/15 hidden sm:block" />
@@ -601,7 +656,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           SERVICES
       ══════════════════════════════════════════ */}
-      <section id="services" className="bg-neutral-950">
+      <section id="services" className="bg-neutral-950 glow-section">
         <div className="h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 sm:py-32">
 
@@ -643,7 +698,7 @@ export default function HomePage() {
                 <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gold/40 mb-4 pb-4 border-b border-neutral-800/50">
                   {cat.category}
                 </p>
-                <ul>
+                <ul data-reveal="fade" className="stagger-list">
                   {cat.items.map(item => (
                     <li key={item.name} className="service-row flex items-center justify-between py-2.5 sm:py-3 border-b border-neutral-900 cursor-default">
                       <div className="flex items-baseline gap-2 sm:gap-3 min-w-0">
@@ -750,7 +805,7 @@ export default function HomePage() {
                   </svg>
                 ))}
               </div>
-              <span className="text-[13px] font-semibold text-white tabular-nums">5,0</span>
+              <span className="text-[13px] font-semibold text-gold tabular-nums counter-glow">5,0</span>
               <span className="text-[12px] text-neutral-600">· 4,8k avis</span>
             </div>
           </div>
@@ -834,7 +889,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           FRANCHISE
       ══════════════════════════════════════════ */}
-      <section id="franchise" className="bg-[#050505]">
+      <section id="franchise" className="bg-[#050505] glow-section">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 pt-20 sm:pt-32 pb-16 sm:pb-24">
           <div data-reveal className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-end mb-16 sm:mb-24">
             <div>
@@ -974,12 +1029,6 @@ export default function HomePage() {
               {t.footerContactLabel}
             </p>
             <p className="text-[12px] sm:text-[13px] text-neutral-600">Rennes &middot; Madrid</p>
-            <a
-              href="/dashboard"
-              className="group text-[11px] text-neutral-700 hover:text-gold mt-8 sm:mt-10 inline-flex items-center gap-2 transition-colors duration-300"
-            >
-              {t.footerAdmin}
-            </a>
           </div>
         </div>
 

@@ -258,6 +258,7 @@ export default function HomePage() {
   const revealRef = useScrollReveal()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -326,7 +327,7 @@ export default function HomePage() {
 
             {/* CTA desktop */}
             <a
-              href="#services"
+              href="/book"
               className="hidden sm:inline-block text-[11px] font-medium tracking-[0.15em] uppercase px-6 py-3 border border-gold/30 text-gold hover:bg-gold hover:text-black transition-all duration-500"
             >
               {t.navBook}
@@ -364,7 +365,7 @@ export default function HomePage() {
         ))}
         <div className="w-8 h-px bg-gold/30 my-2" />
         <a
-          href="#services"
+          href="/book"
           onClick={() => setMobileMenuOpen(false)}
           className="px-8 py-4 text-[11px] font-semibold tracking-[0.15em] uppercase text-black bg-gold hover:bg-gold-light transition-colors duration-500"
         >
@@ -485,7 +486,7 @@ export default function HomePage() {
               style={{ animationDelay: '1s' }}
             >
               <a
-                href="#services"
+                href="/book"
                 className="inline-block px-8 py-4 text-[11px] font-semibold tracking-[0.15em] uppercase text-black bg-gold hover:bg-gold-light transition-colors duration-500 w-full sm:w-auto text-center"
               >
                 {t.heroCta}
@@ -831,7 +832,7 @@ export default function HomePage() {
             {t.ctaP}
           </p>
           <a
-            href="#services"
+            href="/book"
             className="inline-block px-8 sm:px-10 py-4 text-[11px] font-semibold tracking-[0.15em] uppercase text-black bg-gold hover:bg-gold-light transition-colors duration-500 mt-2"
           >
             {t.ctaBtn}

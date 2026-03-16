@@ -757,10 +757,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Desktop: grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.avis.map((review) => (
-              <div key={review.name} className="review-card bg-[#0A0A0A] border border-neutral-800/40 p-6 sm:p-10 flex flex-col gap-5 sm:gap-7">
-                <span className="font-serif text-[4rem] sm:text-[5rem] leading-none text-gold/[0.08] select-none -mb-10 sm:-mb-12 -mt-2">
+              <div key={review.name} className="review-card bg-[#0A0A0A] border border-neutral-800/40 p-10 flex flex-col gap-7">
+                <span className="font-serif text-[5rem] leading-none text-gold/[0.08] select-none -mb-12 -mt-2">
                   &ldquo;
                 </span>
                 <div className="flex gap-0.5">
@@ -770,12 +771,37 @@ export default function HomePage() {
                     </svg>
                   ))}
                 </div>
-                <p className="font-serif italic text-[15px] sm:text-[16px] leading-[1.8] text-neutral-300/90 flex-1">
+                <p className="font-serif italic text-[16px] leading-[1.8] text-neutral-300/90 flex-1">
                   {review.text}
                 </p>
-                <div className="flex items-center justify-between pt-4 sm:pt-5 border-t border-neutral-800/40">
-                  <span className="text-[11px] sm:text-[12px] font-semibold tracking-[0.1em] uppercase text-white/90">{review.name}</span>
-                  <span className="text-[10px] sm:text-[11px] text-neutral-600">{review.date}</span>
+                <div className="flex items-center justify-between pt-5 border-t border-neutral-800/40">
+                  <span className="text-[12px] font-semibold tracking-[0.1em] uppercase text-white/90">{review.name}</span>
+                  <span className="text-[11px] text-neutral-600">{review.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile: horizontal scroll */}
+          <div className="flex sm:hidden gap-4 overflow-x-auto scrollbar-hide -mx-5 px-5 snap-x snap-mandatory">
+            {t.avis.map((review) => (
+              <div key={review.name} className="review-card bg-[#0A0A0A] border border-neutral-800/40 p-6 flex flex-col gap-5 min-w-[85vw] snap-center shrink-0">
+                <span className="font-serif text-[4rem] leading-none text-gold/[0.08] select-none -mb-10 -mt-2">
+                  &ldquo;
+                </span>
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} width="11" height="11" viewBox="0 0 24 24" fill={GOLD} className="opacity-60">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p className="font-serif italic text-[15px] leading-[1.8] text-neutral-300/90 flex-1">
+                  {review.text}
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-neutral-800/40">
+                  <span className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/90">{review.name}</span>
+                  <span className="text-[10px] text-neutral-600">{review.date}</span>
                 </div>
               </div>
             ))}

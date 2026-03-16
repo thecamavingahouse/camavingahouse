@@ -43,7 +43,7 @@ const T = {
     ctaP: 'R\u00e9servez en ligne en quelques clics - choisissez votre barber et votre cr\u00e9neau pr\u00e9f\u00e9r\u00e9.',
     ctaBtn: 'R\u00e9server maintenant',
     franchiseLabel: 'Franchise', franchiseH2a: 'Rejoignez la', franchiseH2b: 'Camavinga House.',
-    franchiseP: 'Cr\u00e9\u00e9e pour proposer une exp\u00e9rience barber haut de gamme, fond\u00e9e sur la pr\u00e9cision, le temps accord\u00e9 \u00e0 chaque client et une identit\u00e9 forte. Nous cherchons des partenaires qui partagent cette exigence.',
+    franchiseP: 'Cr\u00e9\u00e9 pour proposer une exp\u00e9rience barber haut de gamme, fond\u00e9 sur la pr\u00e9cision, le temps accord\u00e9 \u00e0 chaque client et une identit\u00e9 forte. Nous cherchons des partenaires qui partagent cette exigence.',
     franchisePillars: [
       { title: 'Une marque reconnue', desc: 'Rejoignez un nom que tout le monde conna\u00eet - fr\u00e9quent\u00e9 par les plus grandes stars du football mondial.' },
       { title: 'Expertise prouv\u00e9e', desc: 'B\u00e9n\u00e9ficiez de notre formation, de nos m\u00e9thodes et de notre savoir-faire op\u00e9rationnel.' },

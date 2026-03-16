@@ -13,7 +13,7 @@ export default function BookPage() {
 
   useEffect(() => {
     if (!containerRef.current) return
-    ;(window as Record<string, unknown>).planity = {
+    ;(window as unknown as Record<string, unknown>).planity = {
       key: PLANITY_API_KEY,
       primaryColor: GOLD,
       container: containerRef.current,

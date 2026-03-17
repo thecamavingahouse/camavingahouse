@@ -726,21 +726,25 @@ export default function HomePage() {
                     </span>
                   </div>
                 ) : (
-                  <div className="pt-4 mt-3 ml-5 sm:ml-8 border-t border-neutral-800/50 flex flex-col gap-3">
-                    <div>
-                      <p className="text-[11px] sm:text-[13px] text-neutral-400">{loc.address}</p>
-                      <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
+                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-out opacity-0 group-hover:opacity-100 overflow-hidden">
+                    <div className="overflow-hidden">
+                      <div className="pt-4 mt-3 ml-5 sm:ml-8 border-t border-neutral-800/50 flex flex-col gap-3">
+                        <div>
+                          <p className="text-[11px] sm:text-[13px] text-neutral-400">{loc.address}</p>
+                          <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
+                        </div>
+                        {loc.hours && (
+                          <ul className="flex flex-col gap-1 max-w-[200px]">
+                            {loc.hours.map(h => (
+                              <li key={h.day} className="grid grid-cols-[70px_1fr] text-[10px] gap-1">
+                                <span className={h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}>{h.day}</span>
+                                <span className={`text-right ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}`}>{h.time}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
                     </div>
-                    {loc.hours && (
-                      <ul className="flex flex-col gap-1 max-w-[200px]">
-                        {loc.hours.map(h => (
-                          <li key={h.day} className="grid grid-cols-[70px_1fr] text-[10px] gap-1">
-                            <span className={h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}>{h.day}</span>
-                            <span className={`text-right ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}`}>{h.time}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
                 )}
               </div>

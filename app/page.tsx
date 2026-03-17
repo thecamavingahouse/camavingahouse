@@ -726,25 +726,21 @@ export default function HomePage() {
                     </span>
                   </div>
                 ) : (
-                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-600 ease-out opacity-0 group-hover:opacity-100">
-                    <div className="overflow-hidden">
-                      <div className="pt-4 sm:pt-5 mt-3 sm:mt-4 ml-5 sm:ml-8 border-t border-neutral-800/50 flex flex-col gap-3 sm:gap-4">
-                        <div>
-                          <p className="text-[11px] sm:text-[13px] text-neutral-400">{loc.address}</p>
-                          <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
-                        </div>
-                        {loc.hours && (
-                          <ul className="flex-col gap-1.5 hidden sm:flex">
-                            {loc.hours.map(h => (
-                              <li key={h.day} className="flex justify-between text-[11px] sm:text-[12px] gap-4">
-                                <span className={`shrink-0 ${h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}`}>{h.day}</span>
-                                <span className={`text-right whitespace-nowrap ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}`}>{h.time}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                  <div className="pt-4 mt-3 ml-5 sm:ml-8 border-t border-neutral-800/50 flex flex-col gap-3">
+                    <div>
+                      <p className="text-[11px] sm:text-[13px] text-neutral-400">{loc.address}</p>
+                      <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
                     </div>
+                    {loc.hours && (
+                      <ul className="flex-col gap-1 hidden lg:flex">
+                        {loc.hours.map(h => (
+                          <li key={h.day} className="flex justify-between text-[11px] gap-3">
+                            <span className={`shrink-0 ${h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}`}>{h.day}</span>
+                            <span className={`text-right ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums text-[10px]'}`}>{h.time}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
               </div>
@@ -798,7 +794,7 @@ export default function HomePage() {
                 <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-gold/40 mb-4 pb-4 border-b border-neutral-800/50">
                   {cat.category}
                 </p>
-                <ul data-reveal="fade" className="stagger-list">
+                <ul>
                   {cat.items.map(item => (
                     <li key={item.name} className="service-row flex items-center justify-between py-2.5 sm:py-3 border-b border-neutral-900 cursor-default">
                       <div className="flex items-baseline gap-2 sm:gap-3 min-w-0">

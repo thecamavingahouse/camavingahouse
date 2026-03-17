@@ -11,7 +11,7 @@ const T = {
   fr: {
     navSalons: 'Nos Salons', navServices: 'Services', navFranchise: 'Franchise',
     navContact: 'Contact', navBook: 'R\u00e9server',
-    heroTag: 'Barbershop \u00b7 Rennes \u00b7 Madrid \u00b7 Casablanca',
+    heroTag: 'Rennes \u00b7 Madrid \u00b7 Casablanca',
     heroH1a: 'Le salon des', heroH1b: 'champions.',
     heroSub: 'Mbapp\u00e9, Vinicius Jr, Bellingham, Varane, R\u00fcdiger, Rodri, Alaba\u2026 Leur barber, c\u2019est nous.',
     heroCta: 'Prendre rendez-vous', heroDiscover: 'D\u00e9couvrir',
@@ -64,7 +64,7 @@ const T = {
   es: {
     navSalons: 'Nuestros Salones', navServices: 'Servicios', navFranchise: 'Franquicia',
     navContact: 'Contacto', navBook: 'Reservar',
-    heroTag: 'Barberia · Rennes · Madrid · Casablanca',
+    heroTag: 'Rennes \u00b7 Madrid \u00b7 Casablanca',
     heroH1a: 'El salon de los', heroH1b: 'campeones.',
     heroSub: 'Mbappe, Vinicius Jr, Bellingham, Varane, Rudiger, Rodri, Alaba\u2026 Su barbero somos nosotros.',
     heroCta: 'Pedir cita', heroDiscover: 'Descubrir',
@@ -117,7 +117,7 @@ const T = {
   en: {
     navSalons: 'Our Shops', navServices: 'Services', navFranchise: 'Franchise',
     navContact: 'Contact', navBook: 'Book Now',
-    heroTag: 'Barbershop \u00b7 Rennes \u00b7 Madrid \u00b7 Casablanca',
+    heroTag: 'Rennes \u00b7 Madrid \u00b7 Casablanca',
     heroH1a: 'Where champions', heroH1b: 'get sharp.',
     heroSub: 'Mbapp\u00e9, Vinicius Jr, Bellingham, Varane, R\u00fcdiger, Rodri, Alaba\u2026 Their barber? That\u2019s us.',
     heroCta: 'Book an appointment', heroDiscover: 'Discover',

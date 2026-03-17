@@ -180,7 +180,7 @@ const ADDRESSES = [
       { day: 'Mercredi', time: '10:00 - 20:00' },
       { day: 'Jeudi',    time: '10:00 - 20:00' },
       { day: 'Vendredi', time: '10:00 - 20:00' },
-      { day: 'Samedi',   time: '10:00-14:00 · 15:00-20:00' },
+      { day: 'Samedi',   time: '10h-14h / 15h-20h' },
       { day: 'Dimanche', time: 'Ferme' },
     ],
   },
@@ -732,11 +732,11 @@ export default function HomePage() {
                       <p className="text-[10px] sm:text-[12px] text-neutral-600 mt-1">{loc.postal}</p>
                     </div>
                     {loc.hours && (
-                      <ul className="flex-col gap-1 hidden lg:flex">
+                      <ul className="flex-col gap-1 hidden lg:flex max-w-[200px]">
                         {loc.hours.map(h => (
-                          <li key={h.day} className="flex justify-between text-[11px] gap-3">
-                            <span className={`shrink-0 ${h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}`}>{h.day}</span>
-                            <span className={`text-right ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums text-[10px]'}`}>{h.time}</span>
+                          <li key={h.day} className="grid grid-cols-[70px_1fr] text-[10px] gap-1">
+                            <span className={h.time === 'Ferm\u00e9' ? 'text-neutral-700' : 'text-neutral-500'}>{h.day}</span>
+                            <span className={`text-right ${h.time === 'Ferm\u00e9' ? 'text-neutral-800' : 'text-neutral-300 tabular-nums'}`}>{h.time}</span>
                           </li>
                         ))}
                       </ul>

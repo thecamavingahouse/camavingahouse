@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
+import { salons } from '@/lib/salons'
+import { siteUrl } from '@/lib/site-url'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
@@ -10,8 +12,6 @@ const cormorant = Cormorant_Garamond({
   style: ['normal', 'italic'],
 })
 
-const siteUrl = 'https://camavingahouse.com'
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | The Camavinga House',
   },
   description:
-    'Barbershop haut de gamme a Rennes et Madrid. Le salon des champions : Mbappe, Vinicius Jr, Bellingham, Camavinga. Coupe, barbe, soins. Reservez en ligne.',
+    'Réservez votre coupe ou votre soin de barbe à Rennes, Madrid Chamberí ou Arroyomolinos. Tarifs, horaires et accès à chaque salon.',
   keywords: [
     'barbershop rennes',
     'barbershop madrid',
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     alternateLocale: 'es_ES',
-    url: siteUrl,
+    url: './',
     siteName: 'The Camavinga House',
     title: 'The Camavinga House — Barbershop Rennes & Madrid',
     description:
-      'Barbershop haut de gamme a Rennes et Madrid. Le salon des champions. Coupe, barbe, soins. Reservez en ligne.',
+      'Barbershop haut de gamme à Rennes et Madrid. Le salon des champions. Coupe, barbe, soins. Réservez en ligne.',
     images: [
       {
         url: '/images/interior.png',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'The Camavinga House — Barbershop Rennes & Madrid',
     description:
-      'Le salon des champions. Barbershop haut de gamme a Rennes et Madrid.',
+      'Le salon des champions. Barbershop haut de gamme à Rennes et Madrid.',
     images: ['/images/interior.png'],
   },
   robots: {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: './',
   },
   verification: {},
 }
@@ -88,82 +88,22 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'BarberShop',
+    '@type': 'Organization',
     name: 'The Camavinga House',
-    image: `${siteUrl}/images/interior.png`,
     url: siteUrl,
-    description:
-      'Barbershop haut de gamme a Rennes et Madrid. Le salon des champions.',
-    priceRange: '$$',
-    address: [
-      {
+    sameAs: ['https://www.instagram.com/thecamavingahouse/'],
+    location: salons.map(salon => ({
+      '@type': 'HairSalon',
+      name: 'The Camavinga House · ' + salon.name,
+      address: {
         '@type': 'PostalAddress',
-        streetAddress: '2 Passage Antoinette Caillot',
-        addressLocality: 'Rennes',
-        postalCode: '35000',
-        addressCountry: 'FR',
+        streetAddress: salon.address,
+        postalCode: salon.town.split(' ')[0],
+        addressLocality: salon.town.slice(6),
+        addressCountry: salon.key === 'rennes' ? 'FR' : 'ES',
       },
-      {
-        '@type': 'PostalAddress',
-        streetAddress: 'C/ del Gral. Alvarez de Castro, 12',
-        addressLocality: 'Madrid',
-        postalCode: '28010',
-        addressCountry: 'ES',
-      },
-    ],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '10:00',
-        closes: '20:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '09:00',
-        closes: '20:00',
-      },
-    ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '4800',
-      bestRating: '5',
-    },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Prestations',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Coupe simple' },
-          price: '28',
-          priceCurrency: 'EUR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Coupe & barbe' },
-          price: '38',
-          priceCurrency: 'EUR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Coupe VIP' },
-          price: '60',
-          priceCurrency: 'EUR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Barbe simple' },
-          price: '15',
-          priceCurrency: 'EUR',
-        },
-      ],
-    },
-    sameAs: [
-      'https://www.instagram.com/thecamavingahouse/',
-    ],
+      url: new URL(salon.book, siteUrl).href,
+    })),
   }
 
   return (

@@ -1,17 +1,17 @@
 import type { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/site-url'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://camavingahouse.com'
-
   return [
     {
-      url: baseUrl,
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
+    { url: `${siteUrl}/franchise`, changeFrequency: 'monthly', priority: 0.6 },
     {
-      url: `${baseUrl}/book`,
+      url: `${siteUrl}/book`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

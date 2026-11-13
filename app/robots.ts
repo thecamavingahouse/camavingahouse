@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/site-url'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/dashboard', '/api/', '/login'],
       },
     ],
-    sitemap: 'https://camavingahouse.com/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
   }
 }
